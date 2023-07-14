@@ -1,0 +1,5 @@
+spring:
+  r2dbc:
+    username: saeed
+    password: p@ssw0rd
+    url: r2dbc:postgresql://localhost:5432/employee

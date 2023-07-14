@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-service
+  labels:
+    app: employee-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-service
+  template:
+    metadata:
+      labels:
+        app: employee-service
+    spec:
+      initContainers:
+        - name: check-db-ready
+          image: postgres:15.3
+          command: ['sh', '-c',
+            'until pg_isready -h employee-postgres -p 5432; 
+          do echo waiting for database; sleep 2; done;']
+      containers:
+        - name: employee-service
+          image: employee-service
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_R2DBC_URL
+              value: r2dbc:postgresql://employee-postgres/employee
+            - name: SPRING_R2DBC_USERNAME
+              value: saeed
+            - name: SPRING_R2DBC_PASSWORD
+              value: p@ssw0rd
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-service
+  labels:
+    app: employee-service
+spec:
+  type: ClusterIP
+  selector:
+    app: employee-service
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

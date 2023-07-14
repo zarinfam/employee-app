@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-postgres
+  labels:
+    db: employee-postgres
+spec:
+  selector:
+    matchLabels:
+      db: employee-postgres
+  template:
+    metadata:
+      labels:
+        db: employee-postgres
+    spec:
+      containers:
+        - name: employee-postgres
+          image: postgres:15.3
+          env:
+            - name: POSTGRES_USER
+              value: saeed
+            - name: POSTGRES_PASSWORD
+              value: p@ssw0rd
+            - name: POSTGRES_DB
+              value: employee
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-postgres
+  labels:
+    db: employee-postgres
+spec:
+  type: ClusterIP
+  selector:
+    db: employee-postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432

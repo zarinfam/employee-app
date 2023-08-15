@@ -1,0 +1,13 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: employee-app
+build:
+  artifacts:
+    - image: employee-service
+      context: employee-service
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - employee-service/k8s/*

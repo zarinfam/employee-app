@@ -14,18 +14,24 @@ spec:
       labels:
         app: employee-service
     spec:
-      initContainers:
-        - name: check-db-ready
-          image: postgres:15.3
-          command: ['sh', '-c',
-            'until pg_isready -h employee-postgres -p 5432; 
-          do echo waiting for database; sleep 2; done;']
       containers:
         - name: employee-service
           image: employee-service
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 16
+            periodSeconds: 5
           env:
             - name: SPRING_R2DBC_URL
               value: r2dbc:postgresql://employee-postgres/employee

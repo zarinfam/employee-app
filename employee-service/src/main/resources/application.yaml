@@ -4,3 +4,10 @@ spring:
   sql:
     init:
       mode: always
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+      show-components: always

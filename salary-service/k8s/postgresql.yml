@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salary-postgres
+  labels:
+    db: salary-postgres
+spec:
+  selector:
+    matchLabels:
+      db: salary-postgres
+  template:
+    metadata:
+      labels:
+        db: salary-postgres
+    spec:
+      containers:
+        - name: salary-postgres
+          image: postgres:15.3
+          env:
+            - name: POSTGRES_USER
+              value: saeed
+            - name: POSTGRES_PASSWORD
+              value: p@ssw0rd
+            - name: POSTGRES_DB
+              value: salary
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: salary-postgres
+  labels:
+    db: salary-postgres
+spec:
+  type: ClusterIP
+  selector:
+    db: salary-postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432

@@ -1,60 +1,58 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: employee-service
+  name: salary-service
   labels:
-    app: employee-service
+    app: salary-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: employee-service
+      app: salary-service
   template:
     metadata:
       labels:
-        app: employee-service
+        app: salary-service
     spec:
       containers:
-        - name: employee-service
-          image: employee-service
+        - name: salary-service
+          image: salary-service
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
-              port: 8080
+              port: 8081
             initialDelaySeconds: 15
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
-              port: 8080
+              port: 8081
             initialDelaySeconds: 16
             periodSeconds: 5
           env:
             - name: SPRING_R2DBC_URL
-              value: r2dbc:postgresql://employee-postgres/employee
+              value: r2dbc:postgresql://salary-postgres/salary
             - name: SPRING_R2DBC_USERNAME
               value: saeed
             - name: SPRING_R2DBC_PASSWORD
               value: p@ssw0rd
-            - name: SALARY-SERVICE_URL
-              value: http://salary-service
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: employee-service
+  name: salary-service
   labels:
-    app: employee-service
+    app: salary-service
 spec:
   type: ClusterIP
   selector:
-    app: employee-service
+    app: salary-service
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 8081

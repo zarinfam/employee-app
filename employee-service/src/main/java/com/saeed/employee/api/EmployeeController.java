@@ -1,5 +1,6 @@
 package com.saeed.employee.api;
 
+import com.saeed.employee.api.model.EmployeeModel;
 import com.saeed.employee.model.Employee;
 import com.saeed.employee.model.EmployeeService;
 import org.springframework.http.HttpStatus;
@@ -19,14 +20,14 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
     @GetMapping("/{employeeId}")
-    public Mono<Employee> getEmployeeById(@PathVariable Long employeeId) {
+    public Mono<EmployeeModel> getEmployeeById(@PathVariable Long employeeId) {
         return employeeService.findEmployeeById(employeeId);
     }
 

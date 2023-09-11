@@ -1,11 +1,11 @@
 spring:
   application:
-    name: employee-service
+    name: salary-service
   sql:
     init:
       mode: always
 server:
-  port: 8080
+  port: 8081
 management:
   endpoint:
     health:
@@ -13,5 +13,3 @@ management:
         enabled: true
       show-details: always
       show-components: always
-salary-service:
-  url: "http://localhost:8081"

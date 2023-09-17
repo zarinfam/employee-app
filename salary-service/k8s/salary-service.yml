@@ -14,6 +14,10 @@ spec:
       labels:
         app: salary-service
     spec:
+#      initContainers:
+#        - name: delay-container
+#          image: busybox:1.28
+#          command: ['sh', '-c', 'echo Waiting for ...! && sleep 120']
       containers:
         - name: salary-service
           image: salary-service

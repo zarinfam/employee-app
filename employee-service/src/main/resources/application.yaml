@@ -9,6 +9,9 @@ server:
 management:
   endpoint:
     health:
+      group:
+        readiness:
+          include: readinessState,salary
       probes:
         enabled: true
       show-details: always

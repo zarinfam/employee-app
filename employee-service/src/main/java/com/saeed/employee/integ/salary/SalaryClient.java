@@ -20,4 +20,12 @@ public class SalaryClient {
                 .retrieve()
                 .bodyToMono(Salary.class);
     }
+
+    public Mono<HealthStatus> readinessProbe() {
+        return webClient
+                .get()
+                .uri("/actuator/health/readiness")
+                .retrieve()
+                .bodyToMono(HealthStatus.class);
+    }
 }

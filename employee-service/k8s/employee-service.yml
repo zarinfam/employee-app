@@ -39,7 +39,7 @@ spec:
               value: saeed
             - name: SPRING_R2DBC_PASSWORD
               value: p@ssw0rd
-            - name: SALARY-SERVICE_URL
+            - name: SALARY_SERVICE_URL
               value: http://salary-service
 
 ---

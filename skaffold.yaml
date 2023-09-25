@@ -12,6 +12,15 @@ build:
       context: salary-service
       docker:
         dockerfile: Dockerfile
+# if you want to use buildpacks, uncomment the following and comment the above
+#    - image: employee-service
+#      context: employee-service
+#      buildpacks:
+#        builder: 'paketobuildpacks/builder:base'
+#    - image: salary-service
+#      context: salary-service
+#      buildpacks:
+#        builder: 'paketobuildpacks/builder:base'
 portForward:
   - resourceType: service
     resourceName: employee-service

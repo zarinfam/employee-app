@@ -34,3 +34,9 @@ manifests:
   rawYaml:
     - employee-service/k8s/*
     - salary-service/k8s/*
+deploy:
+  helm:
+    releases:
+      - name: prometheus-operator
+        repo: https://prometheus-community.github.io/helm-charts
+        remoteChart: kube-prometheus-stack

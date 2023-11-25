@@ -55,6 +55,23 @@ spec:
   selector:
     app: employee-service
   ports:
-    - protocol: TCP
+    - name: employee-service-port
+      protocol: TCP
       port: 80
       targetPort: 8080
+
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: employee-service
+  labels:
+    release: prometheus-operator
+spec:
+  selector:
+    matchLabels:
+      app: employee-service
+  endpoints:
+    - port: employee-service-port
+      path: "/actuator/prometheus"

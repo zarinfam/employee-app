@@ -1,3 +1,3 @@
-Articles: [Develop and debug Spring Boot application on local Kubernetes Using Skaffold and Cloud Code](https://itnext.io/continuous-development-using-skaffold-for-spring-boot-app-on-a-local-minikube-e455704b587c)
+Articles: [Develop and debug Spring Boot application on local Kubernetes Using Skaffold and Cloud Code](https://zarinfam.medium.com/list/tutorial-spring-boot-skaffold-and-minikube-9af738557d49)
 
 

@@ -1,5 +1,5 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/kubernetes-helm-minikube
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-in-docker
 {
 	"name": "employee-app",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
@@ -7,13 +7,9 @@
 
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
-			"enableNonRootDocker": "true",
-			"moby": "true"
-		},
-		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
 			"version": "latest",
-			"helm": "latest",
-			"minikube": "latest"
+			"enableNonRootDocker": "true",
+			"moby": "false"
 		},
 		"ghcr.io/devcontainers/features/java:1": {
 			"installMaven": true,
@@ -23,6 +19,11 @@
 			"mavenVersion": "latest",
 			"antVersion": "latest",
 			"groovyVersion": "latest"
+		},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+			"version": "latest",
+			"helm": "latest",
+			"minikube": "none"
 		},
 		"ghcr.io/rio/features/skaffold:2": {}
 	},
@@ -47,15 +48,12 @@
 		8080
 	],
 	"postCreateCommand": "bash scripts/devtools_provision.sh"
-	
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "kubectl version",
-
-	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
-	// "postStartCommand": "nohup bash -c 'minikube start &' > minikube.log 2>&1",
+	// "postCreateCommand": "docker --version",
 
 	// Configure tool-specific properties.
 	// "customizations": {},

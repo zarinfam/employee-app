@@ -19,6 +19,12 @@ echo "source ~/.aliases" >> ~/.zshrc
 git config --global user.name "Saeed Zarinfam"
 git config --global user.email zarinfam.s@gmail.com
 
-minikube start -p employee 
+# Install kind For Intel Macs
+[ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.25.0/kind-linux-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+
+kind delete cluster --name employee 
+kind create cluster --name employee
 
 echo "[END] Install dev tools"

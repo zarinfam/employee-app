@@ -11,6 +11,15 @@
 			"enableNonRootDocker": "true",
 			"moby": "false"
 		},
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"configureZshAsDefaultShell": true,
+			"installOhMyZsh": true,
+			"installOhMyZshConfig": true,
+			"username": "automatic",
+			"userUid": "automatic",
+			"userGid": "automatic"
+		},
 		"ghcr.io/devcontainers/features/java:1": {
 			"installMaven": true,
 			"version": "17",
@@ -22,12 +31,17 @@
 		},
 		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
 			"version": "latest",
-			"helm": "latest",
+			"helm": "none",
 			"minikube": "none"
 		},
-		"ghcr.io/rio/features/skaffold:2": {}
+		"ghcr.io/rio/features/skaffold:2": {},
+		"ghcr.io/lentzi90/features/tilt:0": {
+			"version": "v0.33.17"
+		},
+		"ghcr.io/devcontainers-extra/features/kind:1": {
+			"version": "latest"
+		}
 	},
-
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -47,7 +61,7 @@
 	"forwardPorts": [
 		8080
 	],
-	"postCreateCommand": "bash scripts/devtools_provision.sh"
+	"postCreateCommand": "bash scripts/devtools_provision.sh"	
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],

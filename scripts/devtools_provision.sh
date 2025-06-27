@@ -17,4 +17,7 @@ echo "source ~/.aliases" >> ~/.zshrc
 kind delete cluster --name employee 
 kind create cluster --name employee
 
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.3/cert-manager.yaml
+kubectl apply -f https://github.com/redhat-developer/service-binding-operator/releases/latest/download/release.yaml
+
 echo "[END] Install dev tools"

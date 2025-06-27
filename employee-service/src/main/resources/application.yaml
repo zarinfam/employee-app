@@ -18,3 +18,9 @@ management:
       show-components: always
 salary-service:
   url: "http://localhost:8081"
+org:
+  springframework:
+    cloud:
+      bindings:
+        boot:
+          enable: true

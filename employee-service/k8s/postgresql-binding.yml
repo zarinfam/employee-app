@@ -1,0 +1,13 @@
+apiVersion: servicebinding.io/v1beta1
+kind: ServiceBinding
+metadata:
+  name: employee-postgres-binding
+spec:
+  workload:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: employee-service
+  service:
+    apiVersion: v1
+    kind: Secret
+    name: employee-postgres-secret

@@ -33,15 +33,10 @@ spec:
             initialDelaySeconds: 16
             periodSeconds: 5
           env:
-            - name: SPRING_R2DBC_URL
-              value: r2dbc:postgresql://employee-postgres/employee
-            - name: SPRING_R2DBC_USERNAME
-              value: saeed
-            - name: SPRING_R2DBC_PASSWORD
-              value: p@ssw0rd
             - name: SALARY_SERVICE_URL
               value: http://salary-service
-
+            - name: SERVICE_BINDING_ROOT
+              value: "/bindings"
 ---
 
 apiVersion: v1

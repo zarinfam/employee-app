@@ -18,11 +18,20 @@ spec:
           image: postgres:15.3
           env:
             - name: POSTGRES_USER
-              value: saeed
+              valueFrom:
+                secretKeyRef:
+                  name: employee-postgres-secret
+                  key: username
             - name: POSTGRES_PASSWORD
-              value: p@ssw0rd
+              valueFrom:
+                secretKeyRef:
+                  name: employee-postgres-secret
+                  key: password
             - name: POSTGRES_DB
-              value: employee
+              valueFrom:
+                secretKeyRef:
+                  name: employee-postgres-secret
+                  key: database
 
 ---
 
@@ -32,6 +41,7 @@ metadata:
   name: employee-postgres
   labels:
     db: employee-postgres
+    service.binding/type: postgresql
 spec:
   type: ClusterIP
   selector:

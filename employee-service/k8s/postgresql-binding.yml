@@ -3,6 +3,8 @@ kind: ServiceBinding
 metadata:
   name: employee-postgres-binding
 spec:
+  type: postgresql
+  provider: postgresql
   workload:
     apiVersion: apps/v1
     kind: Deployment

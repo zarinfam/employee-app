@@ -41,7 +41,6 @@ metadata:
   name: employee-postgres
   labels:
     db: employee-postgres
-    service.binding/type: postgresql
 spec:
   type: ClusterIP
   selector:

@@ -38,11 +38,20 @@ spec:
             periodSeconds: 5
           env:
             - name: SPRING_R2DBC_URL
-              value: r2dbc:postgresql://salary-postgres/salary
+              valueFrom:
+                secretKeyRef:
+                  name: salary-postgres-secret
+                  key: url                    
             - name: SPRING_R2DBC_USERNAME
-              value: saeed
+              valueFrom:
+                secretKeyRef:
+                  name: salary-postgres-secret
+                  key: username
             - name: SPRING_R2DBC_PASSWORD
-              value: p@ssw0rd
+              valueFrom:
+                secretKeyRef:
+                  name: salary-postgres-secret
+                  key: password
 
 ---
 

@@ -18,11 +18,20 @@ spec:
           image: postgres:15.3
           env:
             - name: POSTGRES_USER
-              value: saeed
+              valueFrom:
+                secretKeyRef:
+                  name: salary-postgres-secret
+                  key: username
             - name: POSTGRES_PASSWORD
-              value: p@ssw0rd
+              valueFrom:
+                secretKeyRef:
+                  name: salary-postgres-secret
+                  key: password
             - name: POSTGRES_DB
-              value: salary
+              valueFrom:
+                secretKeyRef:
+                  name: salary-postgres-secret
+                  key: database
 
 ---
 

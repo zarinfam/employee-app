@@ -1,3 +1,3 @@
-Articles: [Develop and debug Spring Boot application on local Kubernetes Using Skaffold and Cloud Code](https://zarinfam.medium.com/list/tutorial-spring-boot-skaffold-and-minikube-9af738557d49)
+Articles: [6 facts about writing CLI tools using Java and GraalVM - Compare a CLI tool written in Go and Java](https://medium.com/threadsafe/6-facts-about-writing-cli-tools-using-java-and-graalvm-5752c91ccc29)
 
 
